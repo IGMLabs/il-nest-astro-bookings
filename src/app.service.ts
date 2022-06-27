@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { Client } from './client.interface';
 
 @Injectable()
 export class AppService {
@@ -27,5 +28,17 @@ export class AppService {
       throw new Error(`${somenumber} is negative number`);
     }
   }
+
+  public saveClient(client: Client): Client {
+   client.id = Math.random().toString();
+   return client;
+  }
+
+  public updateClient(clientID:string, client: Client): Client {
+    if (clientID>"1"){
+      throw new Error("NOT FOUND" + clientID); 
+    }
+    return client;
+   }
 }
 
