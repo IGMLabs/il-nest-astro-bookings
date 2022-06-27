@@ -1,9 +1,9 @@
 {
-  "name": "ab-nest-astro-bookings",
+  "name": "il-nest-astro-bookings",
   "version": "0.0.1",
   "description": "Demo Nest curso IGM",
   "author": {
-    "name": "Alberto Basalo",
+    "name": "Iván López",
     "email": "albertobasalo@hotmail.com",
     "url": "https://twitter.com/albertobasalo"
   },
