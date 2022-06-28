@@ -1,6 +1,8 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put, Query, UseFilters } from "@nestjs/common";
 import { AppService } from "./app.service";
 import { Client } from "./client.interface";
+import { BusinessErrorFilter } from "./core/filters/business-error.filter";
+import { PositiveNumberPipe } from "./core/pipes/positive-number.pipe";
 
 @Controller("")
 export class AppController {
@@ -75,6 +77,15 @@ export class AppController {
     }
   }
 
+  @Get("/divide/filter")
+  @UseFilters(BusinessErrorFilter)
+  public getDivideFilter(
+    @Query("a",ParseIntPipe) a : number,
+    @Query("b",ParseIntPipe) b : number,
+  ):number{
+      return this.appService.divide(a,b);
+  }
+
   @Get("/raiz/query")
   public getRaizQuery(
     @Query("a",ParseIntPipe) a : number,
@@ -95,6 +106,14 @@ export class AppController {
     }catch(error){
       throw new HttpException (error.message, HttpStatus.BAD_REQUEST);
     }
+  }
+
+  @Get("/raizPipe")
+  public getRaizQueryPipe(
+    @Query("a",PositiveNumberPipe) a : number,
+  ):number{
+    return this.appService.raiz(a);
+   
   }
 
   @Post("")
