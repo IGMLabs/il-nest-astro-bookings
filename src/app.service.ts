@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { Client } from './client.interface';
+import { Client } from './core/models/client.interface';
+import { ClientDto } from './core/models/client.dto';
 
 @Injectable()
 export class AppService {
@@ -29,7 +30,8 @@ export class AppService {
     }
   }
 
-  public saveClient(client: Client): Client {
+  public saveClient(clientDto: ClientDto): Client {
+    const client:Client = {...clientDto};
    client.id = Math.random().toString();
    return client;
   }
