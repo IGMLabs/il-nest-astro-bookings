@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { Agency } from "src/core/models/agency.dto";
 import { CreateAgencyDto } from "src/core/models/create-agency.dto";
 
-
 @Injectable()
 export class AgenciesService {
   private readonly agencies: Agency[] = [];
